@@ -12,6 +12,12 @@
 
 を提供する。単元から引く／条文番号から引く／論点語で検索する、の3通りで目的の回にたどり着ける。
 
+## 公開 URL
+
+**https://natsunooda.github.io/minpo-kakomon/** （GitHub Pages、main へ push すると自動反映）
+
+友達に共有する前提で public にしてある。中身は単元分類データとリンクだけで、PDF の複製は含まない。
+
 ## 起動
 
 ```bash
@@ -31,6 +37,7 @@ launch.json の `minpo-kakomon`（port 8129）でも起動できる。
 | `tools/fetch_sources.py` | 3大学のページを読んで `data/sources.json` を更新。新年度の公開を検知する |
 | `tools/classify.py` | **単元分類の正本（手作業）**。民法体系のタクソノミと、回ごとの単元・論点・条文・判例 |
 | `tools/build_data.py` | sources + classify → `data/kakomon.json`＋`index.html` への埋め込み |
+| `tools/make_assets.py` | ホーム画面アイコン・OG 画像をヘッドレス Chrome で描き出す（六法ビューアと同構図・背景は深緑） |
 
 ### 新年度が公開されたときの手順
 
@@ -74,4 +81,5 @@ python3 tools/build_data.py       # データ再生成（index.html にも反映
 
 ## 進捗
 
+- 2026-10-12 GitHub Pages で公開（友達への共有用に public 化）。アイコン・PWA manifest・OG 画像・「このサイトについて」を追加。
 - 2026-10-12 新規作成。72回分を収録、うち63回を単元分類。残り9回（同志社2005〜2010年度・転入学3回）は解説がなく問題が画像のため未判定。
