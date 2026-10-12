@@ -2,7 +2,35 @@
  "fetched": {
   "同志社": "https://law-school.doshisha.ac.jp/entrance_ex/question/",
   "立命館": "https://www.ritsumei.ac.jp/lawschool/admission/past.html/",
-  "慶應": "https://www.ls.keio.ac.jp/nyushi/examination.html"
+  "慶應": "https://www.ls.keio.ac.jp/nyushi/examination.html",
+  "関学": "https://www.kwansei.ac.jp/lawschool/admissions/kakomon/",
+  "中央": "https://www.chuo-u.ac.jp/academics/pro_graduateschool/law/orientation/selection/past/"
+ },
+ "hosts": {
+  "doshisha-law.kir.jp": {
+   "embeddable": false,
+   "reason": "http"
+  },
+  "law-school.doshisha.ac.jp": {
+   "embeddable": true,
+   "reason": null
+  },
+  "www.chuo-u.ac.jp": {
+   "embeddable": false,
+   "reason": "xfo"
+  },
+  "www.keio.ac.jp": {
+   "embeddable": false,
+   "reason": "xfo"
+  },
+  "www.kwansei.ac.jp": {
+   "embeddable": false,
+   "reason": "xfo"
+  },
+  "www.ritsumei.ac.jp": {
+   "embeddable": true,
+   "reason": null
+  }
  },
  "items": [
   {
@@ -846,6 +874,250 @@
    "kaisetsuLabel": "出題趣旨",
    "kaisetsuNote": "全科目まとめの出題趣旨。民法の節を参照",
    "mondaiNote": "合冊の試験問題（民法・商法）。民法の問題を参照"
+  },
+  {
+   "id": "kgu-2026-a",
+   "univ": "関学",
+   "year": 2026,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/2026A_minpo.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2026-b",
+   "univ": "関学",
+   "year": 2026,
+   "term": "B日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/2026B_minpo.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2026-c",
+   "univ": "関学",
+   "year": 2026,
+   "term": "C日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/2026C_minpo.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2025-a",
+   "univ": "関学",
+   "year": 2025,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2025A.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2025-b",
+   "univ": "関学",
+   "year": 2025,
+   "term": "B日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2025B.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2025-c",
+   "univ": "関学",
+   "year": 2025,
+   "term": "C日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2025C.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2024-a",
+   "univ": "関学",
+   "year": 2024,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2024A2.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2024-b",
+   "univ": "関学",
+   "year": 2024,
+   "term": "B日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2024B.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2024-c",
+   "univ": "関学",
+   "year": 2024,
+   "term": "C日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2024C.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2023-a",
+   "univ": "関学",
+   "year": 2023,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2023A.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2023-b",
+   "univ": "関学",
+   "year": 2023,
+   "term": "B日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/CivilLaw_Solutions_2023B.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2023-c",
+   "univ": "関学",
+   "year": 2023,
+   "term": "C日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Civil_Law_Issues_2023C.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2022-a",
+   "univ": "関学",
+   "year": 2022,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Civil_Law_Issues_2022A.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2022-b",
+   "univ": "関学",
+   "year": 2022,
+   "term": "B日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Civil_Law_Issues_2022B.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2022-c",
+   "univ": "関学",
+   "year": 2022,
+   "term": "C日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Civil_Law_Issues_2022C.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "kgu-2022-d",
+   "univ": "関学",
+   "year": 2022,
+   "term": "D日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Civil%20Law%20Q%26A%202022D.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+  },
+  {
+   "id": "chu-2026-ronjutsu",
+   "univ": "中央",
+   "year": 2026,
+   "term": "論述式",
+   "course": "法学既修者コース",
+   "mondai": "https://www.chuo-u.ac.jp/uploads/2026/03/academics_pro_graduateschool_law_orientation_selection_past_2026_03.pdf",
+   "kaisetsu": "https://www.chuo-u.ac.jp/uploads/2026/03/academics_pro_graduateschool_law_orientation_selection_past_2026_07.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題の意図",
+   "kaisetsuNote": "全科目まとめの「出題の意図及び評価の視点」。民法の節を参照"
+  },
+  {
+   "id": "chu-2025-ronjutsu",
+   "univ": "中央",
+   "year": 2025,
+   "term": "論述式",
+   "course": "法学既修者コース",
+   "mondai": "https://www.chuo-u.ac.jp/uploads/2025/04/academics_pro_graduateschool_law_orientation_selection_past_2025_03.pdf",
+   "kaisetsu": "https://www.chuo-u.ac.jp/uploads/2025/04/academics_pro_graduateschool_law_orientation_selection_past_2025_07_20250414.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題の意図",
+   "kaisetsuNote": "全科目まとめの「出題の意図及び評価の視点」。民法の節を参照"
+  },
+  {
+   "id": "chu-2024-ronjutsu",
+   "univ": "中央",
+   "year": 2024,
+   "term": "論述式",
+   "course": "法学既修者コース",
+   "mondai": "https://www.chuo-u.ac.jp/uploads/2024/05/academics_pro_graduateschool_law_orientation_selection_past_2024_03.pdf",
+   "kaisetsu": "https://www.chuo-u.ac.jp/uploads/2024/05/academics_pro_graduateschool_law_orientation_selection_past_2024_07.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題の意図",
+   "kaisetsuNote": "全科目まとめの「出題の意図及び評価の視点」。民法の節を参照"
   }
  ]
 }

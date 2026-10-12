@@ -5,7 +5,7 @@
 新年度が公開されたらこれを実行すると差分が表示される（新規項目は tools/classify.py に単元を追記する）。
 PDF 自体はダウンロード・再配布しない。記録するのは大学公式ページ上の URL だけ。
 """
-import json, re, html, sys, os, urllib.request, unicodedata as ud
+import json, re, html, sys, os, urllib.request, urllib.parse, unicodedata as ud
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -15,6 +15,8 @@ PAGES = {
  '同志社': 'https://law-school.doshisha.ac.jp/entrance_ex/question/',
  '立命館': 'https://www.ritsumei.ac.jp/lawschool/admission/past.html/',
  '慶應':   'https://www.ls.keio.ac.jp/nyushi/examination.html',
+ '関学':   'https://www.kwansei.ac.jp/lawschool/admissions/kakomon/',
+ '中央':   'https://www.chuo-u.ac.jp/academics/pro_graduateschool/law/orientation/selection/past/',
 }
 
 def get(url):
@@ -141,18 +143,119 @@ def keio(h):
         })
     return items
 
+
+def kwansei(h):
+    """関学は「民法問題・解説（2026A日程）」の1 PDF に問題と解説がまとまっている。"""
+    B = 'https://www.kwansei.ac.jp'
+    h = re.sub(r'<!--.*?-->', '', h, flags=re.S)
+    items = []
+    seen = set()
+    for m in re.finditer(r'<a\s+[^>]*href="([^"]+\.pdf)"[^>]*>(.*?)</a>', h, re.S):
+        href, txt = m.group(1), clean(m.group(2))
+        t = ud.normalize('NFKC', txt)
+        mm = re.search(r'民法問題・解説\s*\(\s*(\d{4})\s*([A-D])日程\s*\)', t)
+        if not mm:
+            continue
+        year, term = int(mm.group(1)), mm.group(2)
+        if (year, term) in seen:
+            continue
+        seen.add((year, term))
+        url = href if href.startswith('http') else B + href
+        items.append({
+            'id': f'kgu-{year}-{term.lower()}', 'univ': '関学', 'year': year,
+            'term': f'{term}日程', 'course': '一般入試（法学既修者）',
+            'mondai': url, 'kaisetsu': None, 'kaitou': None,
+            'kaisetsuLabel': '解説',
+            'combined': True,
+            'mondaiNote': '問題と解説（解答例・出題の意図・講評）が1つにまとまったもの',
+        })
+    items.sort(key=lambda x: (-x['year'], x['term']))
+    return items
+
+
+def chuo(h):
+    """中央は表（法学既修者）の「民法」行から年度ごとの問題 PDF を取る。出題の意図は全科目まとめ。"""
+    B = 'https://www.chuo-u.ac.jp'
+    h = re.sub(r'<!--.*?-->', '', h, flags=re.S)
+    m = re.search(r'<table[^>]*法学既修者[^>]*>(.*?)</table>', h, re.S)
+    if not m:
+        m = re.search(r'<table[^>]*>(.*?)</table>', h, re.S)
+    table = m.group(1) if m else h
+    years = []
+    minpo_urls = []
+    for row in re.findall(r'<tr[^>]*>(.*?)</tr>', table, re.S):
+        cells = [clean(c) for c in re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', row, re.S)]
+        ys = [int(x) for c in cells for x in re.findall(r'(\d{4})年度', c)]
+        if ys and not years:
+            years = ys
+        if any(c == '民法' for c in cells) and not minpo_urls:
+            minpo_urls = re.findall(r'href="([^"]+\.pdf)"', row)
+    # 出題の意図（法学既修者）は年度がリンク文字に書かれている
+    shushi = {}
+    for mm in re.finditer(r'<a\s+[^>]*href="([^"]+\.pdf)"[^>]*>(.*?)</a>', h, re.S):
+        t = clean(mm.group(2))
+        ym = re.search(r'(\d{4})年度.*法学既修者.*出題の意図', t)
+        if ym:
+            shushi[int(ym.group(1))] = B + mm.group(1)
+    items = []
+    for y, u in zip(years, minpo_urls):
+        items.append({
+            'id': f'chu-{y}-ronjutsu', 'univ': '中央', 'year': y, 'term': '論述式',
+            'course': '法学既修者コース',
+            'mondai': B + u, 'kaisetsu': shushi.get(y), 'kaitou': None,
+            'kaisetsuLabel': '出題の意図',
+            'kaisetsuNote': '全科目まとめの「出題の意図及び評価の視点」。民法の節を参照',
+        })
+    items.sort(key=lambda x: -x['year'])
+    return items
+
+
+def host_embed_check(items):
+    """各ホストが PDF の iframe 埋め込みを許すかを実際のヘッダーで調べる。
+    X-Frame-Options / CSP frame-ancestors があるホストは埋め込めない。"""
+    sample = {}
+    for it in items:
+        for k in ('mondai', 'kaisetsu', 'kaitou'):
+            u = it.get(k)
+            if u:
+                host = urllib.parse.urlparse(u).netloc
+                sample.setdefault(host, u)
+    out = {}
+    for host, u in sorted(sample.items()):
+        if u.startswith('http://'):
+            out[host] = {'embeddable': False, 'reason': 'http'}
+            continue
+        try:
+            req = urllib.request.Request(u, method='HEAD', headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                xfo = (r.headers.get('X-Frame-Options') or '').strip()
+                csp = (r.headers.get('Content-Security-Policy') or '')
+            blocked = bool(xfo) or 'frame-ancestors' in csp.lower()
+            out[host] = {'embeddable': not blocked,
+                         'reason': 'xfo' if blocked else None}
+        except Exception as e:
+            out[host] = {'embeddable': False, 'reason': 'unreachable'}
+        print(f"  {host}: {'埋め込み可' if out[host]['embeddable'] else '埋め込み不可（' + str(out[host]['reason']) + '）'}")
+    return out
+
+
 def main():
     items = []
     items += doshisha(get(PAGES['同志社']))
     items += ritsumei(get(PAGES['立命館']))
     items += keio(get(PAGES['慶應']))
+    items += kwansei(get(PAGES['関学']))
+    items += chuo(get(PAGES['中央']))
     old = {}
     if OUT.exists():
         old = {x['id']: x for x in json.load(open(OUT, encoding='utf-8'))['items']}
     new_ids = [x['id'] for x in items if x['id'] not in old]
     gone = [k for k in old if k not in {x['id'] for x in items}]
+    print('ホストの埋め込み可否を確認中…')
+    hosts = host_embed_check(items)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    json.dump({'fetched': PAGES, 'items': items}, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump({'fetched': PAGES, 'hosts': hosts, 'items': items},
+              open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(f'{len(items)} 件を data/sources.json に保存')
     if new_ids: print('新規:', new_ids)
     if gone: print('消えた項目:', gone)

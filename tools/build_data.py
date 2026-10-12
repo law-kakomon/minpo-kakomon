@@ -1,23 +1,43 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """data/sources.json（PDF の在りか）+ tools/classify.py（単元分類）→ data/kakomon.json"""
-import json, sys
+import json, sys, urllib.parse
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'tools'))
 import classify as C
 
-TERM_ORDER = {'前期': 0, '中期': 1, '後期': 2, '本試験': 0, '追試験': 1, '転入学': 3}
-UNIV_ORDER = {'同志社': 0, '立命館': 1, '慶應': 2}
+TERM_ORDER = {'前期': 0, '中期': 1, '後期': 2, '本試験': 0, '追試験': 1, '転入学': 3,
+              'A日程': 0, 'B日程': 1, 'C日程': 2, 'D日程': 3, '論述式': 0}
+UNIV_ORDER = {'同志社': 0, '立命館': 1, '関学': 2, '慶應': 3, '中央': 4}
 
 def main():
     src = json.load(open(ROOT / 'data' / 'sources.json', encoding='utf-8'))
+    hosts = src.get('hosts', {})
+
+    def embed_of(url):
+        """このページ（https）の中に PDF を埋め込めるか。
+        理由は 'xfo'（大学が X-Frame-Options 等で禁止）/ 'http'（PDF が http 配信）。"""
+        if not url:
+            return False, None
+        if url.startswith('http://'):
+            return False, 'http'
+        h = urllib.parse.urlparse(url).netloc
+        info = hosts.get(h)
+        if info and not info.get('embeddable'):
+            return False, info.get('reason') or 'xfo'
+        return True, None
+
     items = []
     for s in src['items']:
+        embed, why = {}, {}
+        for k in ('mondai', 'kaisetsu', 'kaitou'):
+            embed[k], why[k] = embed_of(s.get(k))
         cls = C.CLASS.get(s['id'])
         units, topics, arts, hanrei = cls if cls else ([], [], [], [])
         items.append({
             **s,
+            'embed': embed, 'embedWhy': why,
             # 改正民法（債権法改正）は 2020年4月1日施行。2021年度入試以降が新法下の出題
             'law': '新法' if s['year'] >= 2021 else '旧法',
             'units': units, 'topics': topics, 'articles': arts, 'hanrei': hanrei,
@@ -62,8 +82,12 @@ def main():
     nc = [i['id'] for i in items if not i['classified']]
     print(f"{len(items)} 件 → data/kakomon.json")
     print(f"単元分類済み {len(items)-len(nc)} 件 / 未分類 {len(nc)} 件: {nc}")
-    miss = [i['id'] for i in items if not i.get('kaisetsu')]
+    miss = [i['id'] for i in items if not i.get('kaisetsu') and not i.get('combined')]
     print(f"解説・講評なし {len(miss)} 件: {miss}")
+    import collections
+    print('大学別:', dict(collections.Counter(i['univ'] for i in items)))
+    noemb = [i['id'] for i in items if any(i[k] and not i['embed'][k] for k in ('mondai','kaisetsu','kaitou'))]
+    print(f"埋め込めない PDF を含む項目: {len(noemb)} 件")
 
 if __name__ == '__main__':
     main()
