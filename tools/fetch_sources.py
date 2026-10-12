@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""3大学の公開ページから民法の過去問 PDF の在りかを取得して data/sources.json に書き出す。
+
+新年度が公開されたらこれを実行すると差分が表示される（新規項目は tools/classify.py に単元を追記する）。
+PDF 自体はダウンロード・再配布しない。記録するのは大学公式ページ上の URL だけ。
+"""
+import json, re, html, sys, os, urllib.request, unicodedata as ud
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / 'data' / 'sources.json'
+UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
+PAGES = {
+ '同志社': 'https://law-school.doshisha.ac.jp/entrance_ex/question/',
+ '立命館': 'https://www.ritsumei.ac.jp/lawschool/admission/past.html/',
+ '慶應':   'https://www.ls.keio.ac.jp/nyushi/examination.html',
+}
+
+def get(url):
+    req = urllib.request.Request(url, headers={'User-Agent': UA})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return r.read().decode('utf-8', 'replace')
+
+def clean(s):
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', '', s or ''))).strip()
+
+def doshisha(h):
+    h = re.sub(r'<!--.*?-->', '', h, flags=re.S)
+    rows = []
+    pat = re.compile(r'<h([2-5])[^>]*>(.*?)</h\1>|<tr[^>]*>(.*?)</tr>', re.S)
+    head = sub = ''
+    for m in pat.finditer(h):
+        if m.group(1):
+            if int(m.group(1)) == 5: sub = clean(m.group(2))
+            else: head, sub = clean(m.group(2)), ''
+            continue
+        row = m.group(3)
+        cells = [clean(c) for c in re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', row, re.S)]
+        if '民法' not in cells: continue
+        links = re.findall(r'href="([^"]+\.pdf)"', row)
+        ym = re.search(r'(\d{4})年度', head)
+        if not ym or not links: continue
+        rows.append({'year': int(ym.group(1)), 'sub': sub, 'links': links})
+    # 日程の確定（ファイル名優先、なければ年度内の出現順）
+    seen = {}
+    items = []
+    tennyu_count = {}
+    for r in rows:
+        if '転入' in r['sub']: tennyu_count[r['year']] = tennyu_count.get(r['year'], 0) + 1
+    for r in rows:
+        y, fn = r['year'], r['links'][0].split('/')[-1]
+        if '転入' in r['sub'] or 'tennyu' in fn:
+            term = '転入学'
+            tid = 'tennyu'
+            if tennyu_count.get(y, 0) > 1:
+                if 'Aコース' in r['sub']: tid += '-a'
+                elif 'Bコース' in r['sub']: tid += '-b'
+                elif 'Cコース' in r['sub']: tid += '-c'
+        elif 'zenki' in fn: term, tid = '前期', 'zenki'
+        elif 'koki' in fn: term, tid = '後期', 'koki'
+        else:
+            n = seen.get(y, 0)
+            term, tid = ('後期', 'koki') if n else ('前期', 'zenki')
+        seen[y] = seen.get(y, 0) + 1
+        L = r['links']
+        items.append({
+            'id': f'dos-{y}-{tid}', 'univ': '同志社', 'year': y, 'term': term,
+            'course': r['sub'] or '法学既修者',
+            'mondai': L[0] if len(L) > 0 else None,
+            'kaisetsu': L[1] if len(L) > 1 else None,
+            'kaitou': L[2] if len(L) > 2 else None,
+            'kaisetsuLabel': '解説',
+        })
+    return items
+
+def ritsumei(h):
+    B = 'https://www.ritsumei.ac.jp'
+    TERM = {'z': ('前期', 'zenki'), 'c': ('中期', 'chuki'), 'k': ('後期', 'koki')}
+    minpo = sorted(set(re.findall(r'href="(/lawschool/assets/file/admission/past-(\d\d)([zck])_minpo\.pdf)"', h)))
+    comment = {}
+    for u, y, t in re.findall(r'href="(/lawschool/assets/file/admission/past-comment(\d{4})-([zck])\d?\.pdf)"', h):
+        comment.setdefault((int(y), t), B + u)
+    items = []
+    for u, yy, t in minpo:
+        y = 2000 + int(yy); term, tid = TERM[t]
+        items.append({
+            'id': f'rit-{y}-{tid}', 'univ': '立命館', 'year': y, 'term': term,
+            'course': '法学既修者（B方式）',
+            'mondai': B + u, 'kaisetsu': comment.get((y, t)), 'kaitou': None,
+            'kaisetsuLabel': '入試講評',
+            'kaisetsuNote': '全科目まとめの講評。民法の節を参照',
+        })
+    return items
+
+def keio(h):
+    h = re.sub(r'<!--.*?-->', '', h, flags=re.S)
+    i = h.find('過去の入試問題')
+    body = h[i:] if i >= 0 else h
+    toks = re.findall(r'<h([1-5])[^>]*>(.*?)</h\1>|<a\s+[^>]*href="(https://www\.keio\.ac\.jp/files/[^"]+)"[^>]*>(.*?)</a>', body, re.S)
+    year = course = None; extra = '本試験'
+    buck = {}
+    for lvl, hd, href, txt in toks:
+        if hd:
+            t = clean(hd)
+            m = re.search(r'(\d{4})年度入試問題', t)
+            if m:
+                year = int(m.group(1)); course = None
+                extra = '追試験' if '追試験' in t else '本試験'
+            elif 'コース' in t:
+                course = t
+            continue
+        # 2016年度以前は「論述式I/II」「マーク式」形式で民法の所在を特定できないため対象外
+        if not (course and '既修' in course and year and year >= 2017): continue
+        k = clean(txt)
+        key = (year, extra)
+        b = buck.setdefault(key, {'mondai': None, 'mondaiLabel': None, 'kaisetsu': None, 'generic': None})
+        if '出題趣旨' in k:
+            b['kaisetsu'] = href
+        elif '民法' in k and not b['mondai']:
+            b['mondai'] = href
+            m = re.search(r'[（(]([^（）()]*民法[^（）()]*)[）)]', k)
+            b['mondaiLabel'] = m.group(1) if m else k
+        elif not re.search(r'憲法|刑法|商法|民事訴訟法|刑事訴訟法|小論文|論述式|マーク式|簡易記述式', k) and not b['generic']:
+            # 科目名の付かない合冊（例: 2023年度の「慶應義塾大学大学院入学試験問題」＝憲法・民法・刑法）
+            b['generic'] = href
+    items = []
+    for (y, extra), b in sorted(buck.items(), reverse=True):
+        if not b['mondai'] and b['generic']:
+            b['mondai'] = b['generic']
+            b['mondaiLabel'] = '憲法・民法・刑法'
+        if not b['mondai']: continue
+        tid = 'tsuishi' if extra == '追試験' else 'honshi'
+        items.append({
+            'id': f'kei-{y}-{tid}', 'univ': '慶應', 'year': y, 'term': extra,
+            'course': '法学既修者コース',
+            'mondai': b['mondai'], 'kaisetsu': b['kaisetsu'], 'kaitou': None,
+            'kaisetsuLabel': '出題趣旨',
+            'kaisetsuNote': '全科目まとめの出題趣旨。民法の節を参照',
+            'mondaiNote': f'合冊の試験問題（{b["mondaiLabel"]}）。民法の問題を参照' if b['mondaiLabel'] else None,
+        })
+    return items
+
+def main():
+    items = []
+    items += doshisha(get(PAGES['同志社']))
+    items += ritsumei(get(PAGES['立命館']))
+    items += keio(get(PAGES['慶應']))
+    old = {}
+    if OUT.exists():
+        old = {x['id']: x for x in json.load(open(OUT, encoding='utf-8'))['items']}
+    new_ids = [x['id'] for x in items if x['id'] not in old]
+    gone = [k for k in old if k not in {x['id'] for x in items}]
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    json.dump({'fetched': PAGES, 'items': items}, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    print(f'{len(items)} 件を data/sources.json に保存')
+    if new_ids: print('新規:', new_ids)
+    if gone: print('消えた項目:', gone)
+    if not new_ids and not gone and old: print('前回と同じ内容')
+
+if __name__ == '__main__':
+    main()
