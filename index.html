@@ -402,21 +402,26 @@ function renderDetail(){
       + '単元を判定していません。問題は上のボタンから開けます。</p>');
   }
 
-  // PDF プレビュー
-  const tabs = [["mondai","問題"],["kaisetsu",kaisetsuLabel],["kaitou","解答用紙"]]
+  // PDF プレビュー（埋め込めるものだけ表示し、残りは理由を書く）
+  const all = [["mondai","問題"],["kaisetsu",kaisetsuLabel],["kaitou","解答用紙"]]
     .filter(([k]) => it[k]);
-  if(tabs.length){
+  const tabs = all.filter(([k]) => it.embed[k]);
+  if(all.length){
     p.push('<section class="blk"><h4>そのまま読む</h4>');
-    if(it.embeddable){
+    if(tabs.length){
       p.push('<div id="tabsPdf" class="chips">'
         + tabs.map(([k,l]) => '<button data-pdf="'+k+'"'+(state.pdf===k?' class="on"':'')+'>'+esc(l)+'</button>').join("")
         + '</div>');
-      const cur = it[state.pdf] ? state.pdf : tabs[0][0];
+      const cur = tabs.some(([k]) => k === state.pdf) ? state.pdf : tabs[0][0];
       p.push('<iframe id="viewer" src="'+esc(it[cur])+'" title="PDF"></iframe>');
-    }else{
-      p.push('<p class="note">'+esc(UNIV_FULL[it.univ])
-        + 'のサーバーはページ内への埋め込み表示を許可していないため、ここには表示できません。'
-        + '上のボタンから新しいタブで開いてください。</p>');
+    }
+    const blocked = all.filter(([k]) => !it.embed[k]);
+    if(blocked.length){
+      const why = it.univ === "慶應"
+        ? esc(UNIV_FULL[it.univ]) + 'のサーバーがページ内への埋め込みを許可していないため'
+        : '大学がこの PDF を http（暗号化なし）で公開しており、このページには読み込めないため';
+      p.push('<p class="note">' + blocked.map(([, l]) => esc(l)).join('・')
+        + ' はここには表示できません（' + why + '）。上のボタンから新しいタブで開いてください。</p>');
     }
     p.push('</section>');
   }
@@ -496,8 +501,13 @@ function boot(d){
   for(const it of DATA.items){
     it.units = it.units || []; it.topics = it.topics || [];
     it.articles = it.articles || []; it.hanrei = it.hanrei || [];
-    // 慶應のサーバーは X-Frame-Options: SAMEORIGIN のため埋め込み不可
-    it.embeddable = it.univ !== "慶應";
+    // ページ内に埋め込めるか（ファイルごとに判定）
+    //   慶應のサーバーは X-Frame-Options: SAMEORIGIN を返すため埋め込み不可
+    //   同志社の一部 PDF は http:// 配信のため、https のこのサイトでは混在コンテンツとして止まる
+    it.embed = {};
+    for(const k of ["mondai","kaisetsu","kaitou"]){
+      it.embed[k] = !!it[k] && it.univ !== "慶應" && /^https:\/\//.test(it[k]);
+    }
   }
   loadStore();
   if(state.unit && state.unit !== "__uncls__"){
