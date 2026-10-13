@@ -98,7 +98,7 @@
   },
   {
    "name": "債権総論",
-   "count": 61,
+   "count": 62,
    "subs": [
     {
      "name": "債権の目的・債務不履行",
@@ -113,7 +113,7 @@
     {
      "name": "多数当事者・連帯債務",
      "key": "債権総論/多数当事者・連帯債務",
-     "count": 1
+     "count": 2
     },
     {
      "name": "保証",
@@ -134,7 +134,7 @@
   },
   {
    "name": "契約総論",
-   "count": 21,
+   "count": 22,
    "subs": [
     {
      "name": "契約の成立・手付",
@@ -149,7 +149,7 @@
     {
      "name": "危険負担・同時履行",
      "key": "契約総論/危険負担・同時履行",
-     "count": 10
+     "count": 11
     }
    ]
   },
@@ -191,7 +191,7 @@
   },
   {
    "name": "法定債権",
-   "count": 32,
+   "count": 33,
    "subs": [
     {
      "name": "事務管理",
@@ -206,7 +206,7 @@
     {
      "name": "不法行為",
      "key": "法定債権/不法行為",
-     "count": 19
+     "count": 20
     }
    ]
   },
@@ -217,11 +217,57 @@
   },
   {
    "name": "相続",
-   "count": 22,
+   "count": 24,
    "subs": []
   }
  ],
  "items": [
+  {
+   "id": "dos-2027-zenki",
+   "univ": "同志社",
+   "year": 2027,
+   "term": "前期",
+   "course": "法学既修者",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2027_zenki_mondai_minpo.pdf",
+   "kaisetsu": null,
+   "kaitou": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2027_zenki_kaitou_minpo.pdf",
+   "kaisetsuLabel": "解説",
+   "embed": {
+    "mondai": true,
+    "kaisetsu": false,
+    "kaitou": true
+   },
+   "embedWhy": {
+    "mondai": null,
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "問題",
+   "law": "新法",
+   "units": [
+    "相続",
+    "債権総論/多数当事者・連帯債務",
+    "契約総論/危険負担・同時履行",
+    "法定債権/不法行為"
+   ],
+   "topics": [
+    "相続による債権債務の承継（可分債権と不可分債務）",
+    "共同相続人の一人による売買代金支払請求",
+    "所有権移転登記義務と代金支払義務の同時履行（533条）",
+    "土地工作物責任（717条）",
+    "占有者の免責と所有者の責任"
+   ],
+   "articles": [
+    427,
+    533,
+    717,
+    896,
+    898,
+    899
+   ],
+   "hanrei": [],
+   "classified": true
+  },
   {
    "id": "rit-2027-zenki",
    "univ": "立命館",
@@ -243,6 +289,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -307,6 +354,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/法律行為・意思表示",
@@ -359,6 +407,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/占有・即時取得",
@@ -411,6 +460,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "法定債権/不法行為",
@@ -474,6 +524,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -538,6 +589,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -587,7 +639,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -598,6 +650,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -635,7 +688,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -646,6 +699,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権譲渡・債務引受",
@@ -680,7 +734,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -691,6 +745,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/保証"
@@ -735,6 +790,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/使用貸借・贈与",
@@ -776,6 +832,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/所有権・共有",
@@ -820,6 +877,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/占有・即時取得",
@@ -868,6 +926,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -913,6 +972,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/占有・即時取得",
@@ -979,6 +1039,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/保証",
@@ -1038,6 +1099,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/物権変動・登記",
@@ -1091,7 +1153,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -1102,6 +1164,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/法律行為・意思表示",
@@ -1134,7 +1197,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -1145,6 +1208,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/賃貸借",
@@ -1179,7 +1243,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -1190,6 +1254,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "法定債権/不法行為",
@@ -1228,6 +1293,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権譲渡・債務引受",
@@ -1279,6 +1345,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約総論/解除",
@@ -1317,6 +1384,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -1374,6 +1442,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/時効",
@@ -1433,6 +1502,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権者代位権・詐害行為取消権",
@@ -1490,6 +1560,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約総論/解除",
@@ -1553,6 +1624,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/法律行為・意思表示",
@@ -1606,7 +1678,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -1617,6 +1689,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/物権変動・登記",
@@ -1654,7 +1727,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -1665,6 +1738,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -1703,7 +1777,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -1714,6 +1788,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権の目的・債務不履行",
@@ -1755,6 +1830,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/賃貸借",
@@ -1810,6 +1886,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/賃貸借",
@@ -1863,6 +1940,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/法律行為・意思表示",
@@ -1910,6 +1988,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/請負",
@@ -1957,6 +2036,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -2019,6 +2099,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "法定債権/不法行為",
@@ -2076,6 +2157,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "相続",
@@ -2125,7 +2207,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2136,6 +2218,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/賃貸借",
@@ -2169,7 +2252,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2180,6 +2263,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -2222,7 +2306,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2233,6 +2317,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "物権/占有・即時取得",
@@ -2275,6 +2360,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権の目的・債務不履行",
@@ -2328,6 +2414,7 @@
     "kaisetsu": "http",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約総論/解除",
@@ -2383,6 +2470,7 @@
     "kaisetsu": null,
     "kaitou": "http"
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "担保物権/抵当権",
@@ -2431,6 +2519,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/保証",
@@ -2483,6 +2572,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -2549,6 +2639,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -2598,7 +2689,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2609,6 +2700,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権者代位権・詐害行為取消権",
@@ -2637,7 +2729,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2648,6 +2740,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/賃貸借",
@@ -2680,7 +2773,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2691,6 +2784,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -2724,7 +2818,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている",
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
    "embed": {
     "mondai": false,
     "kaisetsu": false,
@@ -2735,6 +2829,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/弁済・相殺",
@@ -2778,6 +2873,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権譲渡・債務引受",
@@ -2821,6 +2917,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "総則/代理",
@@ -2869,6 +2966,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -2916,6 +3014,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -2975,6 +3074,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "法定債権/不法行為",
@@ -3034,6 +3134,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "債権総論/債権者代位権・詐害行為取消権",
@@ -3083,6 +3184,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "契約各論/売買・契約不適合責任",
@@ -3142,6 +3244,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "新法",
    "units": [
     "担保物権/非典型担保（所有権留保・譲渡担保）",
@@ -3182,6 +3285,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/法律行為・意思表示",
@@ -3239,6 +3343,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "法定債権/不法行為",
@@ -3283,6 +3388,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "債権総論/債権譲渡・債務引受",
@@ -3331,6 +3437,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/物権変動・登記",
@@ -3386,6 +3493,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/権利能力・制限行為能力",
@@ -3446,6 +3554,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "契約各論/賃貸借",
@@ -3487,6 +3596,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/物権変動・登記"
@@ -3528,6 +3638,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/占有・即時取得",
@@ -3570,6 +3681,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/物権変動・登記",
@@ -3618,6 +3730,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "債権総論/債権の目的・債務不履行",
@@ -3679,6 +3792,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "法定債権/不法行為",
@@ -3743,6 +3857,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/時効",
@@ -3783,6 +3898,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "契約各論/賃貸借",
@@ -3828,6 +3944,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/法律行為・意思表示",
@@ -3872,6 +3989,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "親族",
@@ -3927,6 +4045,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "担保物権/抵当権",
@@ -3976,6 +4095,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/占有・即時取得",
@@ -4038,6 +4158,7 @@
     "kaisetsu": "xfo",
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/代理",
@@ -4079,6 +4200,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/代理",
@@ -4130,6 +4252,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/代理",
@@ -4180,6 +4303,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [
     "担保物権/抵当権",
@@ -4222,6 +4346,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/物権変動・登記",
@@ -4281,6 +4406,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "契約総論/契約の成立・手付",
@@ -4324,6 +4450,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "物権/占有・即時取得",
@@ -4367,6 +4494,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4394,6 +4522,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "解説",
    "law": "旧法",
    "units": [
     "総則/代理",
@@ -4440,6 +4569,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4467,6 +4597,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4494,6 +4625,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4521,6 +4653,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4548,6 +4681,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4575,6 +4709,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4602,6 +4737,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],
@@ -4629,6 +4765,7 @@
     "kaisetsu": null,
     "kaitou": null
    },
+   "basis": "問題",
    "law": "旧法",
    "units": [],
    "topics": [],

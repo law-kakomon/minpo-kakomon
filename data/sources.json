@@ -34,6 +34,17 @@
  },
  "items": [
   {
+   "id": "dos-2027-zenki",
+   "univ": "同志社",
+   "year": 2027,
+   "term": "前期",
+   "course": "法学既修者",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2027_zenki_mondai_minpo.pdf",
+   "kaisetsu": null,
+   "kaitou": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2027_zenki_kaitou_minpo.pdf",
+   "kaisetsuLabel": "解説"
+  },
+  {
    "id": "dos-2026-zenki",
    "univ": "同志社",
    "year": 2026,
@@ -886,7 +897,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2026-b",
@@ -899,7 +910,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2026-c",
@@ -912,7 +923,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2025-a",
@@ -925,7 +936,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2025-b",
@@ -938,7 +949,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2025-c",
@@ -951,7 +962,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2024-a",
@@ -964,7 +975,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2024-b",
@@ -977,7 +988,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2024-c",
@@ -990,7 +1001,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2023-a",
@@ -1003,7 +1014,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2023-b",
@@ -1016,7 +1027,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2023-c",
@@ -1029,7 +1040,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2022-a",
@@ -1042,7 +1053,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2022-b",
@@ -1055,7 +1066,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2022-c",
@@ -1068,7 +1079,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "kgu-2022-d",
@@ -1081,7 +1092,7 @@
    "kaitou": null,
    "kaisetsuLabel": "解説",
    "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図）が1つの PDF にまとまっている"
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
   },
   {
    "id": "chu-2026-ronjutsu",

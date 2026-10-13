@@ -65,13 +65,24 @@ def doshisha(h):
             n = seen.get(y, 0)
             term, tid = ('後期', 'koki') if n else ('前期', 'zenki')
         seen[y] = seen.get(y, 0) + 1
-        L = r['links']
+        # リンクは「順番」ではなく URL で種類を決める。
+        # 解説の欄が空の年度（例: 2027年度前期の民法）があり、順番で割り当てると
+        # 解答用紙を解説として拾ってしまう。
+        kinds = {}
+        for u in r['links']:
+            fn = u.rsplit('/', 1)[-1].lower()
+            if '/questions/' in u or 'mondai' in fn:
+                kinds.setdefault('mondai', u)
+            elif '/kaisetsu/' in u or 'kaisetsu' in fn or fn.startswith('kai'):
+                kinds.setdefault('kaisetsu', u)
+            elif '/kaitou/' in u or 'kaitou' in fn or 'yoshi' in fn or re.search(r't\d*\.pdf$', fn):
+                kinds.setdefault('kaitou', u)
         items.append({
             'id': f'dos-{y}-{tid}', 'univ': '同志社', 'year': y, 'term': term,
             'course': r['sub'] or '法学既修者',
-            'mondai': L[0] if len(L) > 0 else None,
-            'kaisetsu': L[1] if len(L) > 1 else None,
-            'kaitou': L[2] if len(L) > 2 else None,
+            'mondai': kinds.get('mondai'),
+            'kaisetsu': kinds.get('kaisetsu'),
+            'kaitou': kinds.get('kaitou'),
             'kaisetsuLabel': '解説',
         })
     return items

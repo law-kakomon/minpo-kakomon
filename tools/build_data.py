@@ -38,6 +38,8 @@ def main():
         items.append({
             **s,
             'embed': embed, 'embedWhy': why,
+            # 単元・論点を何から読み取ったか（解説が無い回は問題文から判定している）
+            'basis': '解説' if (s.get('kaisetsu') or s.get('combined')) else '問題',
             # 改正民法（債権法改正）は 2020年4月1日施行。2021年度入試以降が新法下の出題
             'law': '新法' if s['year'] >= 2021 else '旧法',
             'units': units, 'topics': topics, 'articles': arts, 'hanrei': hanrei,
