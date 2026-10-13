@@ -34,6 +34,16 @@ def icon_html(size, pad_ratio=0.0):
 </div></body>"""
 
 
+def favicon_html(size):
+    """タブ用。16px まで縮むので一文字だけにする（「過去問」3文字は潰れて読めない）。"""
+    return f"""<body style="margin:0;width:{size}px;height:{size}px;
+  background:linear-gradient(145deg,{BG_FROM},{BG_TO});overflow:hidden;
+  display:flex;align-items:center;justify-content:center">
+  <div style="font-family:{MINCHO};color:#fff;font-size:{size*0.78}px;line-height:1;
+       font-weight:600;transform:translateY({size*0.012}px)">過</div>
+</body>"""
+
+
 OG_HTML = f"""<body style="margin:0;width:1200px;height:630px;
   background:linear-gradient(135deg,{BG_FROM},{BG_TO});color:#fff;
   font-family:{GOTHIC};overflow:hidden">
@@ -55,6 +65,7 @@ OG_HTML = f"""<body style="margin:0;width:1200px;height:630px;
 </div></body>"""
 
 TARGETS = [
+    ("favicon-src.png", 256, 256, favicon_html(256)),   # ← favicon.ico / icon-32 等の元画像
     ("icon-192.png", 192, 192, icon_html(192)),
     ("icon-512.png", 512, 512, icon_html(512)),
     ("icon-maskable-512.png", 512, 512, icon_html(512, pad_ratio=0.105)),
@@ -96,10 +107,28 @@ def shoot(html, out, w, h):
     return out.stat().st_size
 
 
+def make_favicons():
+    """タブ用の小さいアイコンを元画像から作る。
+    ブラウザのタブは 16〜32px。192px の PNG だけだと Safari 等が拾わず、
+    頭文字の代替アイコン（丸に「G」）が出てしまうので favicon.ico も置く。"""
+    from PIL import Image
+    src = ROOT / "favicon-src.png"
+    im = Image.open(src).convert("RGBA")
+    for size in (16, 32, 48):
+        out = ROOT / f"icon-{size}.png"
+        im.resize((size, size), Image.LANCZOS).save(out)
+        print(f"icon-{size}.png  {size}x{size}  {out.stat().st_size:,} バイト")
+    ico = ROOT / "favicon.ico"
+    im.save(ico, format="ICO", sizes=[(16, 16), (32, 32), (48, 48)])
+    print(f"favicon.ico  16/32/48  {ico.stat().st_size:,} バイト")
+    src.unlink()
+
+
 def main():
     for name, w, h, html in TARGETS:
         n = shoot(html, ROOT / name, w, h)
         print(f"{name}  {w}x{h}  {n:,} バイト")
+    make_favicons()
 
 
 if __name__ == "__main__":
