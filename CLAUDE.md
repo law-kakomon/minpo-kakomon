@@ -12,6 +12,14 @@
 
 を提供する。単元から引く／条文番号から引く／論点語で検索する、の3通りで目的の回にたどり着ける。
 
+## 姉妹アプリ
+
+**民事訴訟法過去問帳**（`../minso-kakomon`、https://law-kakomon.github.io/minso-kakomon/ ）。
+道具一式と `index.html` はこのリポから複製して科目を差し替えたもの。**片方で直した不具合はもう片方にも当てはまることが多いので、直したら両方を確認すること。**
+民訴側には取得〜テキスト化〜節の切り出し〜条文抽出をまとめた `tools/digest.py` がある（民法側は作業用スクリプトで同じことをしていた）。
+
+入口は https://law-kakomon.github.io/ （科目の一覧）。
+
 ## 公開 URL
 
 **https://law-kakomon.github.io/minpo-kakomon/** （GitHub Pages、main へ push すると自動反映）
