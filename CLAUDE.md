@@ -14,9 +14,23 @@
 
 ## 公開 URL
 
-**https://natsunooda.github.io/minpo-kakomon/** （GitHub Pages、main へ push すると自動反映）
+**https://law-kakomon.github.io/minpo-kakomon/** （GitHub Pages、main へ push すると自動反映）
+
+短縮形の **https://law-kakomon.github.io/** も同じ場所に飛ぶ（転送ページ）。友達に渡すのはこちらでよい。
 
 友達に共有する前提で public にしてある。中身は単元分類データとリンクだけで、PDF の複製は含まない。
+
+### リポジトリの置き場所
+
+2026-10-13 に `natsunooda/minpo-kakomon` から **組織 `law-kakomon`** へ移した（URL から個人アカウント名を外すため。他科目を足せるよう組織名は `law-kakomon`）。関連リポジトリは3つ:
+
+| リポジトリ | 役割 |
+|---|---|
+| `law-kakomon/minpo-kakomon` | **本体**（このリポ） |
+| `law-kakomon/law-kakomon.github.io` | 組織トップ。いまは本体へ転送するだけ。**他科目が増えたら一覧ページに差し替える** |
+| `natsunooda/minpo-kakomon` | 旧 URL の転送用。中身は転送ページのみ（すでに配った旧リンクを生かすため） |
+
+Cloudflare Workers にも一度載せたが（`minpo-kakomon.trilingo-languages.workers.dev`）、URL が長くなるため採用しなかった。Cloudflare は新規の `pages.dev` 受付を終了しており、短い URL は取れない。
 
 ## 起動
 
@@ -96,6 +110,7 @@ python3 tools/build_data.py       # データ再生成（index.html にも反映
 
 ## 進捗
 
+- 2026-10-13 **組織 `law-kakomon` へ移管**し、URL から個人アカウント名を外した（`https://law-kakomon.github.io/minpo-kakomon/`、短縮形は `https://law-kakomon.github.io/`）。旧 URL には転送ページを設置。
 - 2026-10-13 タブの favicon を追加・調整。意匠は6案を実寸比較して**帯だけのマーク**に決定（文字は 16px で潰れる）。ICO は Pillow をやめて自前生成に（PNG 圧縮・AND マスク欠落のどちらも規格違反）。SVG の指定は Safari が非対応なので外した。
 - 2026-10-13 **関学（16回）・中央（3回）を追加**して計91回・82回分類に。あわせて条文抽出の字間アキ／行またぎ対応を入れ、同志社2021前期の誤タグ（制限行為能力）を修正。埋め込み可否はホストへの HEAD 実測に変更。
 - 2026-10-12 GitHub Pages で公開（友達への共有用に public 化）。アイコン・PWA manifest・OG 画像・「このサイトについて」を追加。
