@@ -18,7 +18,8 @@ GOTHIC = "'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif"
 
 
 def icon_html(size, pad_ratio=0.0):
-    """縦書き「過去問」＋左の帯。pad_ratio は maskable 用の安全余白。"""
+    """縦書き「民法」＋左の帯。pad_ratio は maskable 用の安全余白。
+    民訴版・会社法版と揃えて、科目名の2文字にしてある。"""
     inset = size * pad_ratio
     inner = size - inset * 2
     return f"""<body style="margin:0;width:{size}px;height:{size}px;
@@ -27,9 +28,9 @@ def icon_html(size, pad_ratio=0.0):
      display:flex;align-items:center;justify-content:center;gap:{inner*0.085}px">
   <div style="width:{inner*0.072}px;height:{inner*0.70}px;background:{BAR};
        border-radius:{inner*0.036}px"></div>
-  <div style="font-family:{MINCHO};color:#fff;font-size:{inner*0.265}px;line-height:1.02;
+  <div style="font-family:{MINCHO};color:#fff;font-size:{inner*0.36}px;line-height:1.04;
        letter-spacing:0;text-align:center;font-weight:600">
-    過<br>去<br>問
+    民<br>法
   </div>
 </div></body>"""
 
