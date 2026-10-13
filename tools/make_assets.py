@@ -122,8 +122,22 @@ def make_favicons():
         im.resize((size, size), Image.LANCZOS).save(out)
         print(f"icon-{size}.png  {size}x{size}  {out.stat().st_size:,} バイト")
     ico = ROOT / "favicon.ico"
-    im.save(ico, format="ICO", sizes=[(16, 16), (32, 32), (48, 48)])
-    print(f"favicon.ico  16/32/48  {ico.stat().st_size:,} バイト")
+    # bitmap_format="bmp" が要る。Pillow の既定は PNG 圧縮の ICO で、
+    # Safari は小サイズの PNG 入り ICO を読まずタブに代替アイコンを出す。
+    im.save(ico, format="ICO", sizes=[(16, 16), (32, 32), (48, 48)], bitmap_format="bmp")
+    print(f"favicon.ico  16/32/48（BMP）  {ico.stat().st_size:,} バイト")
+
+    # 帯だけのマークは図形なので SVG でも描ける（拡大しても滲まない）
+    svg = ROOT / "icon.svg"
+    svg.write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">'
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="0.62" y2="0.88">'
+        f'<stop offset="0" stop-color="{BG_FROM}"/><stop offset="1" stop-color="{BG_TO}"/>'
+        '</linearGradient></defs>'
+        '<rect width="32" height="32" fill="url(#g)"/>'
+        f'<rect x="13.28" y="6.4" width="5.44" height="19.2" rx="2.72" fill="{BAR}"/>'
+        '</svg>\n', encoding="utf-8")
+    print(f"icon.svg  {svg.stat().st_size:,} バイト")
     src.unlink()
 
 
