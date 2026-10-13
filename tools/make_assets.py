@@ -35,12 +35,15 @@ def icon_html(size, pad_ratio=0.0):
 
 
 def favicon_html(size):
-    """タブ用。16px まで縮むので一文字だけにする（「過去問」3文字は潰れて読めない）。"""
-    return f"""<body style="margin:0;width:{size}px;height:{size}px;
-  background:linear-gradient(145deg,{BG_FROM},{BG_TO});overflow:hidden;
+    """タブ用。16〜32px まで縮むので文字は入れず、色と帯だけのマークにする。
+    「過去問」3文字はもちろん「過」一文字でも 16px では潰れて読めないため
+    （実測で比較して決めた。CLAUDE.md「実装メモ」参照）。
+    帯はホーム画面アイコンにも入っているので、並べたときに同じアプリだと分かる。"""
+    return f"""<body style="margin:0;width:{size}px;height:{size}px;overflow:hidden;
+  background:linear-gradient(145deg,{BG_FROM},{BG_TO});
   display:flex;align-items:center;justify-content:center">
-  <div style="font-family:{MINCHO};color:#fff;font-size:{size*0.78}px;line-height:1;
-       font-weight:600;transform:translateY({size*0.012}px)">過</div>
+  <div style="width:{size*0.17}px;height:{size*0.60}px;background:{BAR};
+       border-radius:{size*0.085}px"></div>
 </body>"""
 
 
