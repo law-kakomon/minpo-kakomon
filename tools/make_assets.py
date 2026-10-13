@@ -5,7 +5,7 @@
 六法ビューアと同じ構図（縦書きの題字＋左に一本の色帯）で、背景色だけ変えて見分けがつくようにしてある。
     python3 tools/make_assets.py
 """
-import subprocess, tempfile, time, os, signal
+import subprocess, tempfile, time, os, signal, struct
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -110,6 +110,41 @@ def shoot(html, out, w, h):
     return out.stat().st_size
 
 
+def write_ico(images, path):
+    """ICO を自前で組み立てる。
+
+    Pillow の save(format="ICO") は使えない:
+      - 既定では中身が PNG 圧縮になり、Safari が読まない
+      - bitmap_format="bmp" にしても **AND マスクを書かない**。ヘッダーの biHeight は
+        「高さ×2（= マスクあり）」と宣言しているのにデータが足りず、厳密なパーサーが弾く
+    ここでは BITMAPINFOHEADER + XOR ビットマップ（BGRA・下から上）+ AND マスク
+    （1bpp・4バイト境界・全ゼロ＝全部不透明）を規格どおりに書く。
+    """
+    entries, blobs = [], []
+    for im in images:
+        w, h = im.size
+        px = im.convert("RGBA").load()
+        xor = bytearray()
+        for y in range(h - 1, -1, -1):              # BMP は下から上
+            for x in range(w):
+                r, g, b, a = px[x, y]
+                xor += bytes((b, g, r, a))          # BGRA
+        row = ((w + 31) // 32) * 4                  # AND マスクの1行は4バイト境界
+        andmask = bytes(row * h)                    # 全ゼロ＝全ピクセル不透明
+        header = struct.pack("<IiiHHIIiiII", 40, w, h * 2, 1, 32, 0,
+                             len(xor) + len(andmask), 0, 0, 0, 0)
+        blobs.append(header + bytes(xor) + andmask)
+        entries.append((w, h))
+    out = bytearray(struct.pack("<HHH", 0, 1, len(blobs)))
+    offset = 6 + 16 * len(blobs)
+    for (w, h), blob in zip(entries, blobs):
+        out += struct.pack("<BBBBHHII", w % 256, h % 256, 0, 0, 1, 32, len(blob), offset)
+        offset += len(blob)
+    for blob in blobs:
+        out += blob
+    path.write_bytes(bytes(out))
+
+
 def make_favicons():
     """タブ用の小さいアイコンを元画像から作る。
     ブラウザのタブは 16〜32px。192px の PNG だけだと Safari 等が拾わず、
@@ -117,27 +152,16 @@ def make_favicons():
     from PIL import Image
     src = ROOT / "favicon-src.png"
     im = Image.open(src).convert("RGBA")
-    for size in (16, 32, 48):
+    sizes = (16, 32, 48)
+    small = {}
+    for size in sizes:
+        small[size] = im.resize((size, size), Image.LANCZOS)
         out = ROOT / f"icon-{size}.png"
-        im.resize((size, size), Image.LANCZOS).save(out)
+        small[size].save(out)
         print(f"icon-{size}.png  {size}x{size}  {out.stat().st_size:,} バイト")
     ico = ROOT / "favicon.ico"
-    # bitmap_format="bmp" が要る。Pillow の既定は PNG 圧縮の ICO で、
-    # Safari は小サイズの PNG 入り ICO を読まずタブに代替アイコンを出す。
-    im.save(ico, format="ICO", sizes=[(16, 16), (32, 32), (48, 48)], bitmap_format="bmp")
-    print(f"favicon.ico  16/32/48（BMP）  {ico.stat().st_size:,} バイト")
-
-    # 帯だけのマークは図形なので SVG でも描ける（拡大しても滲まない）
-    svg = ROOT / "icon.svg"
-    svg.write_text(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">'
-        '<defs><linearGradient id="g" x1="0" y1="0" x2="0.62" y2="0.88">'
-        f'<stop offset="0" stop-color="{BG_FROM}"/><stop offset="1" stop-color="{BG_TO}"/>'
-        '</linearGradient></defs>'
-        '<rect width="32" height="32" fill="url(#g)"/>'
-        f'<rect x="13.28" y="6.4" width="5.44" height="19.2" rx="2.72" fill="{BAR}"/>'
-        '</svg>\n', encoding="utf-8")
-    print(f"icon.svg  {svg.stat().st_size:,} バイト")
+    write_ico([small[s] for s in sizes], ico)
+    print(f"favicon.ico  16/32/48（BMP＋ANDマスク）  {ico.stat().st_size:,} バイト")
     src.unlink()
 
 
