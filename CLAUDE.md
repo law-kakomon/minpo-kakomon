@@ -14,11 +14,18 @@
 
 ## 姉妹アプリ
 
-**民事訴訟法過去問帳**（`../minso-kakomon`、https://law-kakomon.github.io/minso-kakomon/ ）。
-道具一式と `index.html` はこのリポから複製して科目を差し替えたもの。**片方で直した不具合はもう片方にも当てはまることが多いので、直したら両方を確認すること。**
-民訴側には取得〜テキスト化〜節の切り出し〜条文抽出をまとめた `tools/digest.py` がある（民法側は作業用スクリプトで同じことをしていた）。
+| | リポ | 入口 |
+|---|---|---|
+| 民事訴訟法過去問帳 | `../minso-kakomon` | https://law-kakomon.github.io/minso-kakomon/ |
+| 会社法過去問帳 | `../kaisha-kakomon` | https://law-kakomon.github.io/kaisha-kakomon/ |
+| 憲法過去問帳 | `../kenpo-kakomon` | https://law-kakomon.github.io/kenpo-kakomon/ |
+| 行政法過去問帳 | `../gyosei-kakomon` | https://law-kakomon.github.io/gyosei-kakomon/ |
+| 刑法過去問帳 | `../keiho-kakomon` | https://law-kakomon.github.io/keiho-kakomon/ |
+| 刑事訴訟法過去問帳 | `../keiso-kakomon` | https://law-kakomon.github.io/keiso-kakomon/ |
 
-入口は https://law-kakomon.github.io/ （科目の一覧）。
+科目の入口は https://law-kakomon.github.io/ 。
+道具一式（`tools/`）と `index.html` は共通で、科目設定だけ差し替える作り。
+**片方で直した不具合は他にも当てはまる**ので、直したら他リポも確かめること。
 
 ## 公開 URL
 
